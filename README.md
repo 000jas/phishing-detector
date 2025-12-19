@@ -26,7 +26,7 @@ The system includes:
 
 ## Demo Video
 
-*(Add link here)*
+*(https://drive.google.com/file/d/19fMsE8SMqjuqP5GTFaD-OG3RruXRVHgo/view?usp=sharing)*
 
 ---
 
