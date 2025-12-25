@@ -50,19 +50,23 @@ if st.button("🔍 Analyze for Phishing", type="primary", use_container_width=Tr
                     
                     # Display results
                     if isinstance(result, dict):
-                        if result.get("is_phishing", False):
+                        prediction = result.get("prediction", "").lower()
+                        
+                        if prediction == "phishing":
                             st.error(f"🚨 **PHISHING DETECTED!**")
-                            st.markdown(f"**Confidence:** {result.get('confidence', 'N/A')}")
-                        else:
+                            st.markdown(f"**Prediction:** {result.get('prediction', 'N/A')}")
+                        elif prediction == "legitimate":
                             st.success(f"✅ **LEGITIMATE**")
-                            st.markdown(f"**Confidence:** {result.get('confidence', 'N/A')}")
+                            st.markdown(f"**Prediction:** {result.get('prediction', 'N/A')}")
+                        else:
+                            st.info(f"**Result:** {result}")
                         
                         # Show additional details if available
                         if "details" in result:
                             with st.expander("📊 View Details"):
                                 st.json(result["details"])
                     else:
-                        st.success(result)
+                        st.info(f"**Result:** {result}")
                 else:
                     st.error(f"❌ Error: API returned status code {response.status_code}")
                     st.text(response.text)
